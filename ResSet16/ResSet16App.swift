@@ -31,6 +31,8 @@ struct ResSet16App: App {
             // supported = false
         } else if #available(iOS 15.0, *) {
             supported = true
+        } else {
+            // supported = false
         }
         
         if !supported {
