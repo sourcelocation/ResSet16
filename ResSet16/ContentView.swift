@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("by sourcelocation - \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! Double)\nEnter new screen resolution below")
+                Text("by sourcelocation - \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown.")\nEnter new screen resolution below")
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -38,6 +38,17 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .cornerRadius(999)
                 }
+                
+                Button(action: {
+                    xpcRestart()
+                }) {
+                    Text("Restart sys services")
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(999)
+                }
+                
                 Button("Join my Discord :)") {
                     openURL(URL(string: "https://discord.gg/VyVcNjRMeg")!)
                 }
@@ -65,32 +76,34 @@ struct ContentView: View {
             try? FileManager.default.removeItem(at: aliasURL)
             try FileManager.default.createSymbolicLink(at: aliasURL, withDestinationURL: tmpPlistURL)
             
-            xpc_crash("com.apple.containermanagerd")
-            let processes = [
-                "com.apple.cfprefsd.agent",
-                "com.apple.cfprefsd.daemon",
-                "com.apple.containermanagerd",
-                "com.apple.diagnosticd",
-                "com.apple.iphone.axserver-systemwide",
-                "com.apple.mobileassetd.v2",
-                "com.apple.mobilegestalt.xpc",
-                "com.apple.nehelper",
-                "com.apple.nesessionmanager.content-filter",
-                "com.apple.osanalytics.osanalyticshelper",
-                "com.apple.tccd",
-                "com.apple.uikit.viewservice.com.apple.WebContentFilter.remoteUI",
-                "com.apple.webinspector",
-            ]
-            for process in processes {
-                xpc_crash(process)
-            }
-            
 //            xpc_crash("com.apple.frontboard.systemappservices")
             // this does respring the device, but doesn't successfully set the resolution
             
             UIDevice.current.respring()
         } catch {
             UIApplication.shared.alert(body: error.localizedDescription)
+        }
+    }
+    
+    func xpcRestart() {
+        let processes = [
+            "com.apple.containermanagerd",
+            "com.apple.cfprefsd.agent",
+            "com.apple.cfprefsd.daemon",
+            "com.apple.containermanagerd",
+            "com.apple.diagnosticd",
+            "com.apple.iphone.axserver-systemwide",
+            "com.apple.mobileassetd.v2",
+            "com.apple.mobilegestalt.xpc",
+            "com.apple.nehelper",
+            "com.apple.nesessionmanager.content-filter",
+            "com.apple.osanalytics.osanalyticshelper",
+            "com.apple.tccd",
+            "com.apple.uikit.viewservice.com.apple.WebContentFilter.remoteUI",
+            "com.apple.webinspector",
+        ]
+        for process in processes {
+            xpc_crash(process)
         }
     }
     
