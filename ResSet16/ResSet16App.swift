@@ -27,7 +27,7 @@ struct ResSet16App: App {
 #if targetEnvironment(simulator)
 #else
         if #available(iOS 16.2, *) {
-            UIApplication.shared.alert(title: "Not Supported", body: "This version of iOS is not supported.")
+            UIApplication.shared.alert(title: "Not Supported", body: "This version of iOS is not supported.", withButton: false)
         } else {
             do {
                 // TrollStore method

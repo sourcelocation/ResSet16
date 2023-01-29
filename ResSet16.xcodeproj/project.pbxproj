@@ -35,6 +35,7 @@
 		21B1A926298574CB00AF13C1 /* Alert++.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert++.swift"; sourceTree = "<group>"; };
 		21B1A92829857B5200AF13C1 /* DeviceFeatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceFeatures.swift; sourceTree = "<group>"; };
 		21B1A92A29858E7A00AF13C1 /* ipabuild.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ipabuild.sh; sourceTree = "<group>"; };
+		21F2FD53298729A200CA5B0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		21B1A90C2985743000AF13C1 /* ResSet16 */ = {
 			isa = PBXGroup;
 			children = (
+				21F2FD53298729A200CA5B0E /* Info.plist */,
 				2150286A2986CE190057A193 /* Extensions */,
 				21B1A91B2985743F00AF13C1 /* Exploit */,
 				21B1A90D2985743000AF13C1 /* ResSet16App.swift */,
@@ -320,8 +322,8 @@
 				DEVELOPMENT_TEAM = 92S6JX27W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResSet16/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Tap \"OK\". Required for exploit to work.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -331,7 +333,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.ResSet16;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -354,8 +356,8 @@
 				DEVELOPMENT_TEAM = 92S6JX27W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResSet16/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Tap \"OK\". Required for exploit to work.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -365,7 +367,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.ResSet16;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

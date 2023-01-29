@@ -11,6 +11,7 @@ struct ContentView: View {
     @State var width: Double = UIScreen.main.nativeBounds.width
     @State var height: Double = UIScreen.main.nativeBounds.height
     
+    @State var successAlert = false
     @Environment(\.openURL) var openURL
     
     var body: some View {
@@ -39,16 +40,6 @@ struct ContentView: View {
                         .cornerRadius(999)
                 }
                 
-                Button(action: {
-                    xpcRestart()
-                }) {
-                    Text("Restart sys services")
-                        .padding()
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(999)
-                }
-                
                 Button("Join my Discord :)") {
                     openURL(URL(string: "https://discord.gg/VyVcNjRMeg")!)
                 }
@@ -56,13 +47,29 @@ struct ContentView: View {
             .navigationTitle("ResSet16")
             .toolbar {
                 Button(action: {
-                    UIApplication.shared.alert(title: "ResSet16", body: "Made in 30 minutes cause I was bored :P\n\nSupports: iOS 15.0-16.1.2. Do not try on other versions.\n100% safe on these versions.\nForce reboot to revert changes\n\n Inspired by ResolutionSetterSwift for TrollStore\n\nCredits:\n I copy-pasted a lot of code, so I'll just thank all of you: lemin, Avangelista, haxi0 and of course Ian Beer for the exploit")
+                    UIApplication.shared.alert(title: "ResSet16", body: "Supports: iOS 15.0-16.1.2. \n100% safe.\nForce reboot to revert changes\n\n Inspired by ResolutionSetterSwift for TrollStore\n\nCredits:\n I copy-pasted a lot of code, so I'll just thank all of you: lemin, Avangelista, haxi0, opa334, Ian Beer, zhuowei.")
                 }) {
                     Image(systemName: "info.circle")
                 }
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .alert("Success!", isPresented: $successAlert, actions: {
+            Button("Respring", role: .none, action: {
+                UIDevice.current.respring()
+            })
+            Button("Alternative respring", role: .none, action: {
+                xpc_crash("com.apple.frontboard.systemappservices") // this does respring the device, but doesn't successfully set the resolution
+            })
+            Button("Restart sys services", role: .destructive, action: {
+                xpcRestart()
+                UIDevice.current.respring()
+            })
+            Button("Later", role: .cancel, action: {})
+        }, message: {
+            Text("Please respring the device to apply changes. It might be needed to also restart system services in some rare cases.")
+        })
+
     }
     
     func setResolution() {
@@ -76,10 +83,8 @@ struct ContentView: View {
             try? FileManager.default.removeItem(at: aliasURL)
             try FileManager.default.createSymbolicLink(at: aliasURL, withDestinationURL: tmpPlistURL)
             
-//            xpc_crash("com.apple.frontboard.systemappservices")
-            // this does respring the device, but doesn't successfully set the resolution
             
-            UIDevice.current.respring()
+            successAlert = true
         } catch {
             UIApplication.shared.alert(body: error.localizedDescription)
         }
