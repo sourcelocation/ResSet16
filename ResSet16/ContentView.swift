@@ -56,13 +56,9 @@ struct ContentView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .alert("Success!", isPresented: $successAlert, actions: {
             Button("Respring", role: .none, action: {
-                UIDevice.current.respring()
-            })
-            Button("Alternative respring", role: .none, action: {
-                xpc_crash("com.apple.frontboard.systemappservices") // this does respring the device, but doesn't successfully set the resolution
-            })
-            Button("Restart sys services", role: .destructive, action: {
                 xpcRestart()
+            })
+            Button("Alt Respring", role: .none, action: {
                 UIDevice.current.respring()
             })
             Button("Later", role: .cancel, action: {})
@@ -92,20 +88,8 @@ struct ContentView: View {
     
     func xpcRestart() {
         let processes = [
-            "com.apple.containermanagerd",
-            "com.apple.cfprefsd.agent",
             "com.apple.cfprefsd.daemon",
-            "com.apple.containermanagerd",
-            "com.apple.diagnosticd",
-            "com.apple.iphone.axserver-systemwide",
-            "com.apple.mobileassetd.v2",
-            "com.apple.mobilegestalt.xpc",
-            "com.apple.nehelper",
-            "com.apple.nesessionmanager.content-filter",
-            "com.apple.osanalytics.osanalyticshelper",
-            "com.apple.tccd",
-            "com.apple.uikit.viewservice.com.apple.WebContentFilter.remoteUI",
-            "com.apple.webinspector",
+            "com.apple.backboard.TouchDeliveryPolicyServer",
         ]
         for process in processes {
             xpc_crash(process)
