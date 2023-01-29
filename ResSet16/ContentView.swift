@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("by sourcelocation\nEnter new screen resolution below")
+                Text("by sourcelocation - \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! Double)\nEnter new screen resolution below")
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding()
