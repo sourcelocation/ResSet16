@@ -12,32 +12,41 @@ struct ResSet16App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onAppear {
-                    checkNewVersions()
-                    checkAndEscape()
-                    
-                    if #available(iOS 15.0, *) { } else {
-                        UIApplication.shared.alert(body: "This app doesn't support iOS <15. DO NOT try running it. Use Resolution Setter for TrollStore.", withButton: false)
-                    }
-                }
+            .onAppear {
+                checkNewVersions()
+                checkAndEscape()
+            }
         }
     }
     
     func checkAndEscape() {
 #if targetEnvironment(simulator)
 #else
+        var supported = false
         if #available(iOS 16.2, *) {
-            UIApplication.shared.alert(title: "Not Supported", body: "This version of iOS is not supported.", withButton: false)
-        } else {
-            do {
-                // TrollStore method
-                try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile"), includingPropertiesForKeys: nil)
-            } catch {
-                // MDC method
-                grant_full_disk_access() { error in
-                    if (error != nil) {
-                        UIApplication.shared.alert(title: "Access Error", body: "Error: \(String(describing: error?.localizedDescription))\nPlease close the app and retry.")
-                    }
+            // supported = false
+        } else if #available(iOS 16.0, *) {
+            supported = true
+        } else if #available(iOS 15.7.2, *) {
+            // supported = false
+        } else if #available(iOS 15.0, *) {
+            supported = true
+        }
+        
+        if !supported {
+            UIApplication.shared.alert(title: "Not Supported", body: "This version of iOS is not supported. Please close the app.", withButton: false)
+            return
+        }
+            
+        do {
+            // Check if application is entitled
+            try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile"), includingPropertiesForKeys: nil)
+        } catch {
+            // Use MacDirtyCOW to gain r/w
+            grant_full_disk_access() { error in
+                if (error != nil) {
+                    UIApplication.shared.alert(body: "\(String(describing: error?.localizedDescription))\nPlease close the app and retry.")
+                    return
                 }
             }
         }

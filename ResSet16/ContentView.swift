@@ -11,7 +11,6 @@ struct ContentView: View {
     @State var width: Double = UIScreen.main.nativeBounds.width
     @State var height: Double = UIScreen.main.nativeBounds.height
     
-    @State var successAlert = false
     @Environment(\.openURL) var openURL
     
     var body: some View {
@@ -54,22 +53,6 @@ struct ContentView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .alert("Success!", isPresented: $successAlert, actions: {
-            Button("Respring", role: .none, action: {
-                UIDevice.current.respring()
-            })
-            Button("Alternative respring", role: .none, action: {
-                xpc_crash("com.apple.frontboard.systemappservices") // this does respring the device, but doesn't successfully set the resolution
-            })
-            Button("Restart sys services", role: .destructive, action: {
-                xpcRestart()
-                UIDevice.current.respring()
-            })
-            Button("Later", role: .cancel, action: {})
-        }, message: {
-            Text("Please respring the device to apply changes. It might be needed to also restart system services in some rare cases.")
-        })
-
     }
     
     func setResolution() {
@@ -83,8 +66,7 @@ struct ContentView: View {
             try? FileManager.default.removeItem(at: aliasURL)
             try FileManager.default.createSymbolicLink(at: aliasURL, withDestinationURL: tmpPlistURL)
             
-            
-            successAlert = true
+            xpcRestart()
         } catch {
             UIApplication.shared.alert(body: error.localizedDescription)
         }
@@ -92,20 +74,8 @@ struct ContentView: View {
     
     func xpcRestart() {
         let processes = [
-            "com.apple.containermanagerd",
-            "com.apple.cfprefsd.agent",
             "com.apple.cfprefsd.daemon",
-            "com.apple.containermanagerd",
-            "com.apple.diagnosticd",
-            "com.apple.iphone.axserver-systemwide",
-            "com.apple.mobileassetd.v2",
-            "com.apple.mobilegestalt.xpc",
-            "com.apple.nehelper",
-            "com.apple.nesessionmanager.content-filter",
-            "com.apple.osanalytics.osanalyticshelper",
-            "com.apple.tccd",
-            "com.apple.uikit.viewservice.com.apple.WebContentFilter.remoteUI",
-            "com.apple.webinspector",
+            "com.apple.backboard.TouchDeliveryPolicyServer"
         ]
         for process in processes {
             xpc_crash(process)
