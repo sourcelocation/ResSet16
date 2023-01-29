@@ -15,6 +15,10 @@ struct ResSet16App: App {
                 .onAppear {
                     checkNewVersions()
                     checkAndEscape()
+                    
+                    if #available(iOS 15.0, *) { } else {
+                        UIApplication.shared.alert(body: "This app doesn't support iOS <15. DO NOT try running it. Use Resolution Setter for TrollStore.", withButton: false)
+                    }
                 }
         }
     }

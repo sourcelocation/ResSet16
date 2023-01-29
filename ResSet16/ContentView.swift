@@ -65,6 +65,29 @@ struct ContentView: View {
             try? FileManager.default.removeItem(at: aliasURL)
             try FileManager.default.createSymbolicLink(at: aliasURL, withDestinationURL: tmpPlistURL)
             
+            xpc_crash("com.apple.containermanagerd")
+            let processes = [
+                "com.apple.cfprefsd.agent",
+                "com.apple.cfprefsd.daemon",
+                "com.apple.containermanagerd",
+                "com.apple.diagnosticd",
+                "com.apple.iphone.axserver-systemwide",
+                "com.apple.mobileassetd.v2",
+                "com.apple.mobilegestalt.xpc",
+                "com.apple.nehelper",
+                "com.apple.nesessionmanager.content-filter",
+                "com.apple.osanalytics.osanalyticshelper",
+                "com.apple.tccd",
+                "com.apple.uikit.viewservice.com.apple.WebContentFilter.remoteUI",
+                "com.apple.webinspector",
+            ]
+            for process in processes {
+                xpc_crash(process)
+            }
+            
+//            xpc_crash("com.apple.frontboard.systemappservices")
+            // this does respring the device, but doesn't successfully set the resolution
+            
             UIDevice.current.respring()
         } catch {
             UIApplication.shared.alert(body: error.localizedDescription)
