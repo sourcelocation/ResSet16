@@ -15,7 +15,8 @@
 		21B1A9242985745200AF13C1 /* grant_full_disk_access.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1A9212985745200AF13C1 /* grant_full_disk_access.m */; };
 		21B1A9252985745200AF13C1 /* helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1A9222985745200AF13C1 /* helpers.m */; };
 		21B1A927298574CB00AF13C1 /* Alert++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1A926298574CB00AF13C1 /* Alert++.swift */; };
-		21B1A92929857B5200AF13C1 /* Respring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1A92829857B5200AF13C1 /* Respring.swift */; };
+		21B1A92929857B5200AF13C1 /* DeviceFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1A92829857B5200AF13C1 /* DeviceFeatures.swift */; };
+		21B1A92B29858E7A00AF13C1 /* ipabuild.sh in Resources */ = {isa = PBXBuildFile; fileRef = 21B1A92A29858E7A00AF13C1 /* ipabuild.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +31,10 @@
 		21B1A91F2985745100AF13C1 /* vm_unaligned_copy_switch_race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vm_unaligned_copy_switch_race.h; sourceTree = "<group>"; };
 		21B1A9202985745200AF13C1 /* grant_full_disk_access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = grant_full_disk_access.h; sourceTree = "<group>"; };
 		21B1A9212985745200AF13C1 /* grant_full_disk_access.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = grant_full_disk_access.m; sourceTree = "<group>"; };
-		21B1A9222985745200AF13C1 /* helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpers.m; sourceTree = "<group>"; };
+		21B1A9222985745200AF13C1 /* helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = helpers.m; sourceTree = "<group>"; tabWidth = 2; };
 		21B1A926298574CB00AF13C1 /* Alert++.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert++.swift"; sourceTree = "<group>"; };
-		21B1A92829857B5200AF13C1 /* Respring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Respring.swift; sourceTree = "<group>"; };
+		21B1A92829857B5200AF13C1 /* DeviceFeatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceFeatures.swift; sourceTree = "<group>"; };
+		21B1A92A29858E7A00AF13C1 /* ipabuild.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ipabuild.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,9 +48,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2150286A2986CE190057A193 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				21B1A92829857B5200AF13C1 /* DeviceFeatures.swift */,
+				21B1A926298574CB00AF13C1 /* Alert++.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		21B1A9012985743000AF13C1 = {
 			isa = PBXGroup;
 			children = (
+				21B1A92A29858E7A00AF13C1 /* ipabuild.sh */,
 				21B1A90C2985743000AF13C1 /* ResSet16 */,
 				21B1A90B2985743000AF13C1 /* Products */,
 			);
@@ -65,17 +77,10 @@
 		21B1A90C2985743000AF13C1 /* ResSet16 */ = {
 			isa = PBXGroup;
 			children = (
+				2150286A2986CE190057A193 /* Extensions */,
 				21B1A91B2985743F00AF13C1 /* Exploit */,
 				21B1A90D2985743000AF13C1 /* ResSet16App.swift */,
 				21B1A90F2985743000AF13C1 /* ContentView.swift */,
-				21B1A92829857B5200AF13C1 /* Respring.swift */,
-				21B1A926298574CB00AF13C1 /* Alert++.swift */,
-				21B1A9202985745200AF13C1 /* grant_full_disk_access.h */,
-				21B1A9212985745200AF13C1 /* grant_full_disk_access.m */,
-				21B1A91E2985745100AF13C1 /* helpers.h */,
-				21B1A9222985745200AF13C1 /* helpers.m */,
-				21B1A91D2985745100AF13C1 /* vm_unaligned_copy_switch_race.c */,
-				21B1A91F2985745100AF13C1 /* vm_unaligned_copy_switch_race.h */,
 				21B1A9112985743100AF13C1 /* Assets.xcassets */,
 				21B1A9132985743100AF13C1 /* Preview Content */,
 				21B1A91C2985744C00AF13C1 /* ResSet16-Bridging-Header.h */,
@@ -94,6 +99,12 @@
 		21B1A91B2985743F00AF13C1 /* Exploit */ = {
 			isa = PBXGroup;
 			children = (
+				21B1A9202985745200AF13C1 /* grant_full_disk_access.h */,
+				21B1A9212985745200AF13C1 /* grant_full_disk_access.m */,
+				21B1A91E2985745100AF13C1 /* helpers.h */,
+				21B1A9222985745200AF13C1 /* helpers.m */,
+				21B1A91D2985745100AF13C1 /* vm_unaligned_copy_switch_race.c */,
+				21B1A91F2985745100AF13C1 /* vm_unaligned_copy_switch_race.h */,
 			);
 			path = Exploit;
 			sourceTree = "<group>";
@@ -158,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21B1A9152985743100AF13C1 /* Preview Assets.xcassets in Resources */,
+				21B1A92B29858E7A00AF13C1 /* ipabuild.sh in Resources */,
 				21B1A9122985743100AF13C1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,7 +184,7 @@
 				21B1A9242985745200AF13C1 /* grant_full_disk_access.m in Sources */,
 				21B1A9102985743000AF13C1 /* ContentView.swift in Sources */,
 				21B1A90E2985743000AF13C1 /* ResSet16App.swift in Sources */,
-				21B1A92929857B5200AF13C1 /* Respring.swift in Sources */,
+				21B1A92929857B5200AF13C1 /* DeviceFeatures.swift in Sources */,
 				21B1A9232985745200AF13C1 /* vm_unaligned_copy_switch_race.c in Sources */,
 				21B1A927298574CB00AF13C1 /* Alert++.swift in Sources */,
 				21B1A9252985745200AF13C1 /* helpers.m in Sources */,

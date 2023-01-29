@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("by sourcelocation\n\nEnter new screen resolution below")
+                Text("by sourcelocation\nEnter new screen resolution below")
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -41,7 +41,6 @@ struct ContentView: View {
                 Button("Join my Discord :)") {
                     openURL(URL(string: "https://discord.gg/VyVcNjRMeg")!)
                 }
-                .padding()
             }
             .navigationTitle("ResSet16")
             .toolbar {
@@ -65,6 +64,7 @@ struct ContentView: View {
             let aliasURL = URL(fileURLWithPath: "/private/var/mobile/Library/Preferences/com.apple.iokit.IOMobileGraphicsFamily.plist")
             try? FileManager.default.removeItem(at: aliasURL)
             try FileManager.default.createSymbolicLink(at: aliasURL, withDestinationURL: tmpPlistURL)
+            
             UIDevice.current.respring()
         } catch {
             UIApplication.shared.alert(body: error.localizedDescription)
