@@ -23,8 +23,10 @@ struct ContentView: View {
                 VStack {
                     TextField("New height", value: $height, format: .number)
                         .textFieldStyle(.roundedBorder)
+                        .keyboardType(.decimalPad)
                     TextField("New width", value: $width, format: .number)
                         .textFieldStyle(.roundedBorder)
+                        .keyboardType(.decimalPad)
                 }
                 .padding()
                 .frame(maxWidth: 350)
