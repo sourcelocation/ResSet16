@@ -17,10 +17,10 @@ struct ContentView: View {
         VStack {
             HStack {
                 Spacer()
-                Image.appIcon
+                Image("Icon")
                     .resizable()
                     .frame(width: 70, height: 70)
-                    .cornerRadius(18)
+                    .cornerRadius(16)
                 Spacer()
             }
             Text("ResSet16").fontWeight(.bold).font(.system(size: 25))
@@ -32,9 +32,8 @@ struct ContentView: View {
                 .padding()
                 .multilineTextAlignment(.center)
                 .overlay(
-                    
                     RoundedRectangle(cornerRadius: 999)
-                        .stroke(Color.lightGray, lineWidth: 2)
+                        .stroke(Color.lightGray, lineWidth: 1)
                 )
             TextField("Width", value: $width, format: .number.grouping(.never))
                 .keyboardType(.decimalPad)
@@ -42,7 +41,7 @@ struct ContentView: View {
                 .multilineTextAlignment(.center)
                 .overlay(
                     RoundedRectangle(cornerRadius: 999)
-                        .stroke(Color.lightGray, lineWidth: 2)
+                        .stroke(Color.lightGray, lineWidth: 1)
                 )
             Button(action: {
                 setResolution()
@@ -69,10 +68,9 @@ struct ContentView: View {
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 999)
-                            .stroke(Color.orange, lineWidth: 2)
+                            .stroke(Color.orange, lineWidth: 1)
                     )
                     .background(Color.clear)
-                    .cornerRadius(999)
                 }
                 Button(action: {
                     openURL(URL(string: "https://discord.gg/VyVcNjRMeg")!)
@@ -85,10 +83,9 @@ struct ContentView: View {
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 999)
-                            .stroke(Color.orange, lineWidth: 2)
+                            .stroke(Color.orange, lineWidth: 1)
                     )
                     .background(Color.clear)
-                    .cornerRadius(999)
                 }
             }
         }

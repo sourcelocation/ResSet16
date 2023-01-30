@@ -19,9 +19,3 @@ extension Color {
         return Color(UIColor.init(hue: 0, saturation: 0, brightness: 0.7, alpha: 0.2))
     }
 }
-
-extension Image {
-    static var appIcon:Image {
-        return Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
-    }
-}
