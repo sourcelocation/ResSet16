@@ -52,7 +52,7 @@ struct ContentView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.orange)
+                .background(.orange)
                 .foregroundColor(.white)
                 .cornerRadius(999)
             }
@@ -63,6 +63,7 @@ struct ContentView: View {
                     HStack {
                         Spacer()
                         Text("About")
+                            .foregroundColor(.orange)
                         Spacer()
                     }
                     .padding()
@@ -78,14 +79,15 @@ struct ContentView: View {
                     HStack {
                         Spacer()
                         Text("Discord")
+                            .foregroundColor(.orange)
                         Spacer()
                     }
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 999)
-                            .stroke(Color.orange, lineWidth: 1)
+                            .stroke(.orange, lineWidth: 1)
                     )
-                    .background(Color.clear)
+                    .background(.clear)
                 }
             }
         }
