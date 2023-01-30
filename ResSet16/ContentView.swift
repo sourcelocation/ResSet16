@@ -14,45 +14,86 @@ struct ContentView: View {
     @Environment(\.openURL) var openURL
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("by sourcelocation - \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown.")\nEnter new screen resolution below")
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                VStack {
-                    TextField("New height", value: $height, format: .number)
-                        .textFieldStyle(.roundedBorder)
-                    TextField("New width", value: $width, format: .number)
-                        .textFieldStyle(.roundedBorder)
+        VStack {
+            HStack {
+                Spacer()
+                Image.appIcon
+                    .resizable()
+                    .frame(width: 70, height: 70)
+                    .cornerRadius(18)
+                Spacer()
+            }
+            Text("ResSet16").fontWeight(.bold).font(.system(size: 25))
+            Text("Version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown")").fontWeight(.light).font(.system(size: 18))
+            Text("sourcelocation").fontWeight(.light).font(.system(size: 18))
+                .padding(.bottom)
+            TextField("Height", value: $height, format: .number.grouping(.never))
+                .keyboardType(.decimalPad)
+                .padding()
+                .multilineTextAlignment(.center)
+                .overlay(
+                    
+                    RoundedRectangle(cornerRadius: 999)
+                        .stroke(Color.lightGray, lineWidth: 2)
+                )
+            TextField("Width", value: $width, format: .number.grouping(.never))
+                .keyboardType(.decimalPad)
+                .padding()
+                .multilineTextAlignment(.center)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 999)
+                        .stroke(Color.lightGray, lineWidth: 2)
+                )
+            Button(action: {
+                setResolution()
+            }) {
+                HStack {
+                    Spacer()
+                    Text("Set Resolution")
+                    Spacer()
                 }
                 .padding()
-                .frame(maxWidth: 350)
-                
-                Button(action: {
-                    setResolution()
-                }) {
-                    Text("Set resolution")
-                        .padding()
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(999)
-                }
-                
-                Button("Join my Discord :)") {
-                    openURL(URL(string: "https://discord.gg/VyVcNjRMeg")!)
-                }
+                .background(Color.orange)
+                .foregroundColor(.white)
+                .cornerRadius(999)
             }
-            .navigationTitle("ResSet16")
-            .toolbar {
+            HStack {
                 Button(action: {
                     UIApplication.shared.alert(title: "ResSet16", body: "Supports: iOS 15.0-16.1.2. \n100% safe.\nForce reboot to revert changes\n\n Inspired by ResolutionSetterSwift for TrollStore\n\nCredits:\n I copy-pasted a lot of code, so I'll just thank all of you: lemin, Avangelista, haxi0, opa334, Ian Beer, zhuowei.")
                 }) {
-                    Image(systemName: "info.circle")
+                    HStack {
+                        Spacer()
+                        Text("About")
+                        Spacer()
+                    }
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 999)
+                            .stroke(Color.orange, lineWidth: 2)
+                    )
+                    .background(Color.clear)
+                    .cornerRadius(999)
+                }
+                Button(action: {
+                    openURL(URL(string: "https://discord.gg/VyVcNjRMeg")!)
+                }) {
+                    HStack {
+                        Spacer()
+                        Text("Discord")
+                        Spacer()
+                    }
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 999)
+                            .stroke(Color.orange, lineWidth: 2)
+                    )
+                    .background(Color.clear)
+                    .cornerRadius(999)
                 }
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .padding()
+        .frame(maxWidth: 350)
     }
     
     func setResolution() {
@@ -81,7 +122,6 @@ struct ContentView: View {
             xpc_crash(process)
         }
     }
-    
     
     func createPlist(at url: URL) throws {
         let 💀 : [String: Any] = [
