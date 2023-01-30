@@ -17,6 +17,7 @@
 		21B1A927298574CB00AF13C1 /* Alert++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1A926298574CB00AF13C1 /* Alert++.swift */; };
 		21B1A92929857B5200AF13C1 /* DeviceFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1A92829857B5200AF13C1 /* DeviceFeatures.swift */; };
 		21B1A92B29858E7A00AF13C1 /* ipabuild.sh in Resources */ = {isa = PBXBuildFile; fileRef = 21B1A92A29858E7A00AF13C1 /* ipabuild.sh */; };
+		25378CE0298761740008553C /* ResSet16.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 25378CDF298761730008553C /* ResSet16.entitlements */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		21B1A92829857B5200AF13C1 /* DeviceFeatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceFeatures.swift; sourceTree = "<group>"; };
 		21B1A92A29858E7A00AF13C1 /* ipabuild.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ipabuild.sh; sourceTree = "<group>"; };
 		21F2FD53298729A200CA5B0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		25378CDF298761730008553C /* ResSet16.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ResSet16.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		21B1A9012985743000AF13C1 = {
 			isa = PBXGroup;
 			children = (
+				25378CDF298761730008553C /* ResSet16.entitlements */,
 				21B1A92A29858E7A00AF13C1 /* ipabuild.sh */,
 				21B1A90C2985743000AF13C1 /* ResSet16 */,
 				21B1A90B2985743000AF13C1 /* Products */,
@@ -170,6 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25378CE0298761740008553C /* ResSet16.entitlements in Resources */,
 				21B1A9152985743100AF13C1 /* Preview Assets.xcassets in Resources */,
 				21B1A92B29858E7A00AF13C1 /* ipabuild.sh in Resources */,
 				21B1A9122985743100AF13C1 /* Assets.xcassets in Resources */,
@@ -246,7 +250,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -300,7 +304,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

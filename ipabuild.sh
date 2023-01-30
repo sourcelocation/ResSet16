@@ -40,8 +40,8 @@ if [ -e "$TARGET_APP/embedded.mobileprovision" ]; then
 fi
 
 # # Add entitlements
-# echo "Adding entitlements"
-# ldid -S"$WORKING_LOCATION/entitlements.plist" "$TARGET_APP/$APPLICATION_NAME"
+echo "Adding entitlements"
+ldid -S"$WORKING_LOCATION/$APPLICATION_NAME.entitlements" "$TARGET_APP/$APPLICATION_NAME"
 
 # Package .ipa
 rm -rf Payload

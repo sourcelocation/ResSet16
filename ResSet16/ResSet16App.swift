@@ -23,16 +23,20 @@ struct ResSet16App: App {
 #if targetEnvironment(simulator)
 #else
         var supported = false
+        var needsTrollStore = false
         if #available(iOS 16.2, *) {
-            // supported = false
+            supported = false
         } else if #available(iOS 16.0, *) {
             supported = true
+            needsTrollStore = false
         } else if #available(iOS 15.7.2, *) {
-            // supported = false
+            supported = false
         } else if #available(iOS 15.0, *) {
             supported = true
-        } else {
-            // supported = false
+            needsTrollStore = false
+        } else if #available(iOS 14.0, *) {
+            supported = true
+            needsTrollStore = true
         }
         
         if !supported {
@@ -44,10 +48,14 @@ struct ResSet16App: App {
             // Check if application is entitled
             try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile"), includingPropertiesForKeys: nil)
         } catch {
+            if needsTrollStore {
+                UIApplication.shared.alert(title: "Use TrollStore", body: "You must install this app with TrollStore for it to work with this version of iOS. Please close the app.", withButton: false)
+                return
+            }
             // Use MacDirtyCOW to gain r/w
             grant_full_disk_access() { error in
                 if (error != nil) {
-                    UIApplication.shared.alert(body: "\(String(describing: error?.localizedDescription))\nPlease close the app and retry.")
+                    UIApplication.shared.alert(body: "\(String(describing: error?.localizedDescription))\nPlease close the app and retry.", withButton: false)
                     return
                 }
             }
