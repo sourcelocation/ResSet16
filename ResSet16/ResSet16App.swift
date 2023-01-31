@@ -12,10 +12,10 @@ struct ResSet16App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            .onAppear {
-                checkNewVersions()
-                checkAndEscape()
-            }
+                .onAppear {
+                    checkNewVersions()
+                    checkAndEscape()
+                }
         }
     }
     
@@ -40,10 +40,10 @@ struct ResSet16App: App {
         }
         
         if !supported {
-            UIApplication.shared.alert(title: "Not Supported", body: "This version of iOS is not supported.", withButton: false)
+            UIApplication.shared.alert(title: "Not Supported", body: "This version of iOS is not supported.")
             return
         }
-            
+        
         do {
             // Check if application is entitled
             try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile"), includingPropertiesForKeys: nil)
