@@ -40,7 +40,7 @@ struct ResSet16App: App {
         }
         
         if !supported {
-            UIApplication.shared.alert(title: "Not Supported", body: "This version of iOS is not supported. Please close the app.", withButton: false)
+            UIApplication.shared.alert(title: "Not Supported", body: "This version of iOS is not supported.", withButton: false)
             return
         }
             
