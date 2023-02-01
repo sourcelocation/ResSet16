@@ -49,13 +49,13 @@ struct ResSet16App: App {
             try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile"), includingPropertiesForKeys: nil)
         } catch {
             if needsTrollStore {
-                UIApplication.shared.alert(title: "Use TrollStore", body: "You must install this app with TrollStore for it to work with this version of iOS. Please close the app.", withButton: false)
+                UIApplication.shared.alert(title: "Use TrollStore", body: "You must install this app with TrollStore for it to work with this version of iOS.")
                 return
             }
             // Use MacDirtyCOW to gain r/w
             grant_full_disk_access() { error in
                 if (error != nil) {
-                    UIApplication.shared.alert(body: "\(String(describing: error?.localizedDescription))\nPlease close the app and retry.", withButton: false)
+                    UIApplication.shared.alert(body: "\(String(describing: error?.localizedDescription))\nPlease close the app and retry.")
                     return
                 }
             }
